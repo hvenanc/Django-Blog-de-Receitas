@@ -31,6 +31,11 @@ def recipes_view(request, recipe_id):
 
 
 def search_view(request):
+    search_term = request.GET.get('q')
+
+    if not search_term:
+        raise Http404('Termo Inválido!')
+    
     return render(request, 'recipes/pages/search.html')
 
 

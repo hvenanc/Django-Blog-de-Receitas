@@ -1,7 +1,7 @@
 <div class="search-container">
     <div class="container">
-        <form class="search-form" action="" method="post">
-            <input type="search" name="search" id="search" class="search-input" placeholder="Digite sua Receita">
+        <form class="search-form" action={% url 'recipes:search' %} method="GET">
+            <input type="search" name="q" id="search" class="search-input" placeholder="Digite sua Receita" required>
             <button type="submit" class="search-button">
                 <i class="fas fa-search"></i>
             </button>
