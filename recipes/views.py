@@ -30,7 +30,8 @@ def recipes_view(request, recipe_id):
     }))
 
 
-
+def search_view(request):
+    return render(request, 'recipes/pages/search.html')
 
 
 
