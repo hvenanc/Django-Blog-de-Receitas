@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from recipes.models import Recipe
-from utils.recipes.factory import make_recipe
+from django.db.models import Q
 
 
 def home_view(request):
@@ -31,12 +31,22 @@ def recipes_view(request, recipe_id):
 
 
 def search_view(request):
-    search_term = request.GET.get('q')
+    search_term = request.GET.get('q', '').strip()
 
     if not search_term:
         raise Http404('Termo Inválido!')
     
-    return render(request, 'recipes/pages/search.html')
+    recipes = Recipe.objects.filter(
+        Q(
+            Q(title__icontains=search_term) |
+            Q(description__icontains=search_term),
+        ),
+        is_published=True
+    ).order_by('-id')
+    
+    return render(request, 'recipes/pages/search.html', {
+        'recipes': recipes
+    })
 
 
 
