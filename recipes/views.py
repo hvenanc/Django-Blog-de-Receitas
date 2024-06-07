@@ -2,12 +2,27 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from recipes.models import Recipe
 from django.db.models import Q
+from django.core.paginator import Paginator
+from utils.pagination import make_pagination_range
 
 
 def home_view(request):
+
     recipes = Recipe.objects.filter(is_published=True).order_by('-id')
+
+    try:
+        current_page = request.GET.get('page', 1)
+    except ValueError:
+        current_page = 1
+
+    
+    paginator = Paginator(recipes, 3)
+    recipes_for_page = paginator.get_page(current_page)
+
+    pagination_range = make_pagination_range(paginator.page_range, 3, current_page)
     return render(request, 'recipes/pages/home.html', context={
-        'recipes': recipes,
+        'recipes': recipes_for_page,
+        'pagination_range': pagination_range, 
     })
 
 
