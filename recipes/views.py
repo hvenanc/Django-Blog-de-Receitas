@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from recipes.models import Recipe
-from django.contrib import messages
 from django.db.models import Q
 from utils.pagination import make_pagination
 
@@ -11,11 +10,6 @@ def home_view(request):
     recipes = Recipe.objects.filter(is_published=True).order_by('-id')
 
     recipes_for_page, pagination_range = make_pagination(request, recipes, 3)
-
-    messages.success(request, 'Bem-vindo')
-    messages.error(request, 'Bem-vindo')
-    messages.warning(request, 'Bem-vindo')
-    messages.info(request, 'Bem-vindo')
 
     return render(request, 'recipes/pages/home.html', context={
         'recipes': recipes_for_page,
