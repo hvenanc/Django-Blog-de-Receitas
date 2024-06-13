@@ -375,6 +375,7 @@ h1,h2,h3,h4,h5,h6 {
 .errorlist {
     color: var(--color-error-dark);
     list-style-type: none;
+    margin-top: .75rem;
 }
 
 .form-content input {
@@ -382,6 +383,10 @@ h1,h2,h3,h4,h5,h6 {
     padding: 1rem;
     border-radius: 0.4rem;
     border: 1px solid var(--color-primary-dark);
+}
+
+.form-group {
+    margin-right: 5%;
 }
 
 .form-content-grid {
@@ -405,5 +410,9 @@ h1,h2,h3,h4,h5,h6 {
 
     .form-content button {
         width: 100%;
+    }
+
+    .form-group {
+        margin-right: 0%;
     }
 }
