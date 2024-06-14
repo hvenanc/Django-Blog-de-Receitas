@@ -297,9 +297,11 @@ h1,h2,h3,h4,h5,h6 {
 
 .messages-container {
     display: flex;
-    flex-flow: column nowrap;
+    /* flex-flow: column nowrap; */
     gap: calc(var(--spacing-gutter-medium) / 2);
-    max-width: 64rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .message {

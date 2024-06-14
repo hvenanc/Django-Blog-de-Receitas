@@ -9,7 +9,7 @@
   {% include 'recipes/partials/messages.html' %}
 
   <div class="main-content container">
-    <form action="{% url 'authors:login_success' %}" method="post">
+    <form action="{{form_action}}" method="post">
       {% csrf_token %}
       <div class="form-content form-content-grid">
         {% for field in form %}
